@@ -1,0 +1,29 @@
+nav#top_bar{
+    
+}
+
+nav ul{    
+    display:  flex;
+    flex-wrap:  wrap;
+    list-style: none;    
+    justify-content: space-between;    
+    text-align: center;
+    padding-inline-start: 0px;
+}
+
+nav ul li{
+    flex: 1;
+    padding: 10px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    /* font-size: 1.3em; */
+    text-transform:uppercase;
+}
+
+nav ul li:hover{
+    text-decoration: underline;
+    border-radius: 5px;    
+}
