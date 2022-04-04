@@ -39,7 +39,6 @@
 ?>
 
 <!DOCTYPE html>
-<html>
 <head>
     <title>Posts Summary</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />

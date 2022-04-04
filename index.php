@@ -28,7 +28,12 @@
         <?php while($row = $statement->fetch()): ?>
             <li>
                 <p><?= $row['Timestamp'] ?></p>
-            	<p>Title: <?= $row['Title'] ?> ID: <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Post_ID'] ?></a></p>
+            	<p>
+                    Title: <?= $row['Title'] ?> ID: <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Post_ID'] ?></a>
+                    <?php if ($row['Member_ID'] == $userLoginId): ?>
+                    <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>
+                    <?php endif ?>
+                </p>
 
             </li>
         <?php endwhile ?>
