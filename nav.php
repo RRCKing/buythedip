@@ -9,7 +9,7 @@
             <li><a href="product_create.php">Create Product</a></li>
         <?php endif ?>
         <?php if ($role == 'admin'):?>
-            <li><a href="post_summary.php">Posts Summary</a></li>
+            <li><a href="post_manage.php">Posts Manage</a></li>
             <li><a href="product_list.php">Product List</a></li>
             <li><a href="members.php">Manage Members</a></li>
         <?php endif ?>

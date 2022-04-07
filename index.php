@@ -4,6 +4,8 @@
 
     $categoryId = "";
     if (isset($_POST['filter']) && isset($_POST['category_id']) && $_POST['category_id'] != -1){
+        
+        // if filtering form selected, run the query below
         $sortColumn ="Timestamp";
         $order = "DESC";
         $query = "SELECT * FROM posts po 
@@ -21,6 +23,7 @@
         $statement ->bindvalue(':category_id', $categoryId);
         
     }else{
+        // if no query selected, run the query below
         $categoryId = "";
         $sortColumn ="Timestamp";
         $order = "DESC";
