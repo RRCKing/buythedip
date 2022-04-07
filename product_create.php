@@ -20,12 +20,6 @@
         $sessMemberId = $_SESSION['sess_member_id'];
     }
 
-    // Get the category selection
-    $queryCategories = "SELECT * FROM Categories";
-    $stmtCategories = $db->prepare($queryCategories);
-    $stmtCategories->execute();
-
-
     if ($_POST && !empty($_POST['product_desc'])) {
         
         // Santitize input
@@ -120,17 +114,10 @@
         $productStatement->bindvalue(':imglink50', $imglink50);
 
         if($productStatement->execute()){
-
             
             header("Location: post_create.php");
-        }
-
-        
-    }
-
-
-
-    
+        }        
+    }    
 ?>
 
 <!DOCTYPE html>

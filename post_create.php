@@ -59,6 +59,11 @@
     $queryStores = "SELECT * FROM Stores";
     $stmtStores = $db->prepare($queryStores);
     $stmtStores->execute();
+
+    // Get the category selection
+    $queryCategories = "SELECT * FROM Categories";
+    $stmtCategories = $db->prepare($queryCategories);
+    $stmtCategories->execute();
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +76,7 @@
 <body>
     <?php include('nav.php')?>
     <form method="post" action="post_create.php">
-        <legend>Post Create</legend>
+        <legend>Create Post</legend>
         <input type="hidden" name="member_id" value="<?= $sessMemberId ?>">
         <ul>
             <li>
@@ -111,6 +116,31 @@
             </li>
         </ul>
     </form>
-
+    <form method="post" action="product_create.php" enctype='multipart/form-data'>
+        <legend>Create Product</legend>
+        <ul>
+            <li>
+                <label for="product_desc">Product Description</label>
+                <input id="product_desc" name="product_desc">
+            </li>
+            <li>
+                <label for="category_id">Choose a category:</label>
+                <select name="category_id" id="category_id">
+                    <?php while($row = $stmtCategories->fetch()): ?>
+                        <option value="<?=$row['Category_ID']?>">
+                            <?=$row['Category_Name']?>
+                        </option>
+                    <?php endwhile ?>
+                </select>
+            </li>
+            <li>
+                <label for='image'>Image Filename:</label>
+                <input type='file' name='image' id='image'>
+            </li>
+            <li>
+                <input type="submit" name="command" value="submit" />
+            </li>
+        </ul>
+    </form>
 </body>
 </html>
