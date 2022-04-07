@@ -2,6 +2,15 @@
     require('db_connect.php');
     include('authen.php');
 
+    // Only logged in can access this page, otherwise redirect to index.php.
+    $sessMemberId = "";
+    if (!isset($_SESSION['sess_role'])){
+        header("Location: index.php"); 
+        exit;
+    }else{
+        $sessMemberId = $_SESSION['sess_member_id'];
+    }
+
     $query = "SELECT * FROM products";
 
     $statement = $db->prepare($query);
