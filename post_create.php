@@ -64,6 +64,7 @@
     $queryCategories = "SELECT * FROM Categories";
     $stmtCategories = $db->prepare($queryCategories);
     $stmtCategories->execute();
+    $rowCategory = $stmtCategories -> fetch();
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +76,48 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <!--Create the Category if it is new -->
+    <form method="post" action="category_create.php">
+        <legend>Create Category</legend>
+        
+        <ul>
+            <li>
+                <label for="category_name">Category Name</label>
+                <input id="category_name" name="category_name">
+            </li>
+            <li>
+                <input type="submit" name="command" value="submit" />
+            </li>
+        </ul>
+    </form>
+    <!-- Create the Product if it is new -->
+    <form method="post" action="product_create.php" enctype='multipart/form-data'>
+        <legend>Create Product</legend>
+        <ul>
+            <li>
+                <label for="product_desc">Product Description</label>
+                <input id="product_desc" name="product_desc">
+            </li>
+            <li>
+                <label for="category_id">Choose a category:</label>
+                <select name="category_id" id="category_id">
+                    <?php while($row = $stmtCategories->fetch()): ?>
+                        <option value="<?=$row['Category_ID']?>">
+                            <?=$row['Category_Name']?>
+                        </option>
+                    <?php endwhile ?>
+                </select>
+            </li>
+            <li>
+                <label for='image'>Image Filename:</label>
+                <input type='file' name='image' id='image'>
+            </li>
+            <li>
+                <input type="submit" name="command" value="submit" />
+            </li>
+        </ul>
+    </form>
+    <!-- Create the Post -->
     <form method="post" action="post_create.php">
         <legend>Create Post</legend>
         <input type="hidden" name="member_id" value="<?= $sessMemberId ?>">
@@ -111,32 +154,6 @@
                 <label for="price">Price</label>
                 <input id="price" name="price">
             </li>        
-            <li>
-                <input type="submit" name="command" value="submit" />
-            </li>
-        </ul>
-    </form>
-    <form method="post" action="product_create.php" enctype='multipart/form-data'>
-        <legend>Create Product</legend>
-        <ul>
-            <li>
-                <label for="product_desc">Product Description</label>
-                <input id="product_desc" name="product_desc">
-            </li>
-            <li>
-                <label for="category_id">Choose a category:</label>
-                <select name="category_id" id="category_id">
-                    <?php while($row = $stmtCategories->fetch()): ?>
-                        <option value="<?=$row['Category_ID']?>">
-                            <?=$row['Category_Name']?>
-                        </option>
-                    <?php endwhile ?>
-                </select>
-            </li>
-            <li>
-                <label for='image'>Image Filename:</label>
-                <input type='file' name='image' id='image'>
-            </li>
             <li>
                 <input type="submit" name="command" value="submit" />
             </li>

@@ -15,7 +15,7 @@
                     ORDER BY ".$sortColumn." ".$order;
 
         $categoryId = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
-
+        
         $statement = $db->prepare($query);
 
         $statement ->bindvalue(':category_id', $categoryId);
