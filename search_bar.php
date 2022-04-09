@@ -1,13 +1,46 @@
+<?php
+
+    // search bar always attached to the pages with connection, so no db connect.
+
+    //assign the search input
+    $searchInput = "";
+    $searchType = "";
+    $searchTypeSelections = array("All"=>"all", "Post Title"=>"title", 
+                                    "Post Content"=>"content", "Product Name"=>"product",
+                                    "Product Category"=>"product_category",
+                                    "Login Name"=>"login_name");
+
+    // Get the category selection
+    $queryCategories = "SELECT * FROM Categories";
+    $stmtCategories = $db->prepare($queryCategories);
+    $stmtCategories->execute();
+?>
+
+
 <form method="post" action="search.php">
         <input id="search" name="search" value="<?=$searchInput?>">
         <select name="search_type" id="search_type">
-            <option value="all" selected>All</option>
-            <option value="title">Post Title</option>
-            <option value="content">Post Content</option>            
-            <option value="product">Product Name</option>
-            <option value="product_category">Product Category</option>
-            <option value="login_name">Login Name</option>
+            <?php foreach($searchTypeSelections as $key => $value): ?>            
+                <option value="<?=$value?>">
+                    <?=$key?>
+                </option>
+            <?php endforeach ?>
+        </select>
+        <label for="category_filter">Filtered by category:</label>
+        <select name="category_filter" id="category_filter">
+            <option value="-1" selected>All</option>
+            <?php while($row = $stmtCategories->fetch()): ?>            
+                <?php if ($categoryFilter == $row['Category_ID']): ?>
+                <option value="<?=$row['Category_ID']?>" selected>
+                    <?=$row['Category_Name']?>
+                </option>
+                <?php else: ?>
+                <option value="<?=$row['Category_ID']?>">
+                    <?=$row['Category_Name']?>
+                </option>
+                <?php endif ?>
+            <?php endwhile ?>
         </select>
         <input type="submit" name="command" value="search" />
         <input type="submit" name="command" value="clear" />
-</form>   
+</form>

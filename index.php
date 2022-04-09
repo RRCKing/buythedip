@@ -114,38 +114,6 @@
 <body>
     <?php include('nav.php')?>
     <h1>Home Page: Found <?= $statement->rowCount() ?> Posts</h1>
-    <form method="post">
-        <input id="search" name="search" value="<?=$searchInput?>">
-        <select name="search_type" id="search_type">
-            <option value="all" selected>All</option>
-            <option value="title">Post Title</option>
-            <option value="content">Post Content</option>            
-            <option value="product">Product Name</option>
-            <option value="product_category">Product Category</option>
-            <option value="login_name">Login Name</option>
-        </select>
-        <input type="submit" name="command" value="search" />
-        <input type="submit" name="command" value="clear" />
-    </form>    
-    <form method="post">
-        <label for="category_id">Choose a category:</label>
-        <select name="category_id" id="category_id">
-            <option value="-1" selected>All</option>
-            <?php while($row = $stmtCategories->fetch()): ?>            
-                <?php if ($categoryId == $row['Category_ID']): ?>
-                <option value="<?=$row['Category_ID']?>" selected>
-                    <?=$row['Category_Name']?>
-                </option>
-                <?php else: ?>
-                <option value="<?=$row['Category_ID']?>">
-                    <?=$row['Category_Name']?>
-                </option>
-                <?php endif ?>
-            <?php endwhile ?>
-        </select>
-        <!-- <button name="filter">Filter</button> -->
-        <input type="submit" name="command" value="filter" />
-    </form>
     <ol>
         <?php while($row = $statement->fetch()): ?>
             <li>
