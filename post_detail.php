@@ -101,6 +101,10 @@
             </li>        
             <li>
                 <input type="submit" name="command" value="submit" />
+                <?php if($role == 'admin'): ?>
+                <input type="submit" name="command" value="Edit" />
+                <input type="submit" name="command" value="Delete" />
+                <?php endif ?>                
             </li>
         </ul>
         </form>
