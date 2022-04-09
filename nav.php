@@ -15,3 +15,5 @@
         <?php endif ?>
     </ul>
 </nav>
+
+<?php include('search_bar.php')?>
