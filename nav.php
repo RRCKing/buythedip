@@ -7,7 +7,7 @@
 
     <div id="top_header_right">
         <div id="top_greeting_message">
-            Hi, <?=$userLoginName?>
+            <span>Hi, <?=$userLoginName?></span>
             <form method="post" action="logout.php" id="logout">
             <?php if ($role == 'member' || $role == 'admin'):?>
                 <input type="submit" name="logout" id="logout" value="Logout" />
@@ -15,13 +15,13 @@
             </form>    
         </div>
         <div id="top_function_lists">
-            <ul id="top_function_list1">
             <?php if ($role == 'admin'):?>
-                <li><a href="post_manage.php">Manage Posts</a></li>
-                <li><a href="product_list.php">Product List</a></li>
-                <li><a href="members.php">Manage Members</a></li>
+                <ul id="top_function_list1">            
+                    <li><a href="post_manage.php">Manage Posts</a></li>
+                    <li><a href="product_list.php">Product List</a></li>
+                    <li><a href="members.php">Manage Members</a></li>            
+                </ul>
             <?php endif ?>
-            </ul>
             <ul id="top_function_list2">
                 <?php if ($role == 'member' || $role == 'admin'):?>
                     <li><a href="post_create.php">Create Post</a></li>
@@ -33,6 +33,5 @@
             </ul>
         </div>
     </div>
-
 </div>
 </header>
