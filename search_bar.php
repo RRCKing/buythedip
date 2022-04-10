@@ -10,10 +10,10 @@
                                     "Product Category"=>"product_category",
                                     "Login Name"=>"login_name");
 
-    // Get the category selection
-    $queryCategories = "SELECT * FROM Categories";
-    $stmtCategories = $db->prepare($queryCategories);
-    $stmtCategories->execute();
+    // Get the category selection for search bar
+    $queryCategoriesSearch = "SELECT * FROM Categories";
+    $stmtCategoriesSearch = $db->prepare($queryCategoriesSearch);
+    $stmtCategoriesSearch->execute();
 ?>
 
 
@@ -29,7 +29,7 @@
         <label for="category_filter">Filtered by category:</label>
         <select name="category_filter" id="category_filter">
             <option value="-1" selected>All</option>
-            <?php while($row = $stmtCategories->fetch()): ?>            
+            <?php while($row = $stmtCategoriesSearch->fetch()): ?>            
                 <?php if ($categoryFilter == $row['Category_ID']): ?>
                 <option value="<?=$row['Category_ID']?>" selected>
                     <?=$row['Category_Name']?>

@@ -1,6 +1,5 @@
 <?php
-    //require('db_connect.php');
-    //session_start();
+    session_start();
     if(isset($_POST['logout'])) {
 
         $_SESSION['sess_member_id']   = '';
@@ -16,6 +15,5 @@
 ?>
 
 <form method="post">
-
   <input type="submit" name="logout" id="logout" value="Logout" />
 </form>

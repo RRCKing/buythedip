@@ -1,29 +1,68 @@
-nav#top_bar{
-    
+/* #top_header_right{
+    float: right;
 }
 
-nav ul{    
-    display:  flex;
-    flex-wrap:  wrap;
-    list-style: none;    
-    justify-content: space-between;    
-    text-align: center;
-    padding-inline-start: 0px;
+a img{
+    width:15%;
+    height:15%;
 }
 
-nav ul li{
-    flex: 1;
-    padding: 10px;
+#logout {
+    display:inline;
 }
 
-nav ul li a{
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
-    /* font-size: 1.3em; */
-    text-transform:uppercase;
+div#top_greeting_message{
+
 }
 
-nav ul li:hover{
-    text-decoration: underline;
-    border-radius: 5px;    
+div#search_bar{
+    clear: right;
+}
+
+ul#top_function_list1{
+    display: inline-block;
+    padding-right: 30px;
+    border-right: solid;
+    padding-left: 0px;
+}
+
+ul#top_function_list1 li{
+    padding-left: 0px;
+}
+
+ul#top_function_list2{
+    display: inline-block;
+} */
+a img{
+    width:200px;
+}
+
+div#header{
+    display:flex;
+    align-content: space-between; 
+}
+
+div#top_header_right{
+    margin-left: auto;
+}
+ul#top_function_list2{
+    display: inline-block;
+}
+
+ul{
+    list-style: none;
+}
+
+ul#top_function_list1{
+    display: inline-block;
+    padding-right: 30px;
+    border-right: solid;
+    padding-left: 0px;
+}
+
+
+ul#top_function_list2{
+    margin: 30px;
+    display: inline-block;
+    padding-left: 0px;
 }

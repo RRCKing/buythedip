@@ -93,9 +93,6 @@
         $statement = $db->prepare($query);
     }
 
-    //$statement->bindValue(':sort_column', 'Title');
-    //$statement->bindValue(':order', $order);
-    // Execution on the DB server is delayed until we execute().
     $statement->execute();
 
     // Get the category selection
