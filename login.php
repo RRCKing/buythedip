@@ -84,7 +84,6 @@
         <tr>
         <td>
             <input type="submit" name="submitBtnLogin" id="submitBtnLogin" value="Login" />
-            <input type="submit" name="logout" id="logout" value="Logout" />
             <span class="loginMsg"><?php echo @$msg;?></span>
         </td>
         </tr>

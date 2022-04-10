@@ -114,20 +114,23 @@
     <div id="search_bar">
         <?php include('search_bar.php')?>
     </div>
-    <h1>Home Page: Found <?= $statement->rowCount() ?> Posts</h1>
-    <ol>
-        <?php while($row = $statement->fetch()): ?>
-            <li>
-                <p><?= $row['Timestamp'] ?></p>
-            	<p>
-                    Category <?=$row['Category_Name']?> - 
-                    Title: <?= $row['Title'] ?> ID: <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Post_ID'] ?></a>
-                    <?php if ($row['Member_ID'] == $userLoginId): ?>
-                    <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>
-                    <?php endif ?>
-                </p>                        
-            </li>
-        <?php endwhile ?>
-    </ol>
+    <h1>Home Page: Total <?= $statement->rowCount() ?> Posts</h1>
+    <div id="home_post_list">
+        <ol>
+            <?php while($row = $statement->fetch()): ?>
+                <li>
+                    <p>Post ID: <?= $row['Post_ID'] ?> | Category -  <?=$row['Category_Name']?> | Posted by: <?= $row['Timestamp'] ?>  </p>
+                    <h3>
+                        <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>
+                        <?php if ($row['Member_ID'] == $userLoginId): ?>
+                    </h3>
+                    <p>
+                        <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>
+                        <?php endif ?>
+                    </p>                        
+                </li>
+            <?php endwhile ?>
+        </ol>
+    </div>
 </body>
 </html>
