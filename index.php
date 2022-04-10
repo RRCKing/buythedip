@@ -110,6 +110,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <h1>Home Page: Found <?= $statement->rowCount() ?> Posts</h1>
     <ol>
         <?php while($row = $statement->fetch()): ?>

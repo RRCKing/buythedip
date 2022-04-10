@@ -27,6 +27,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <h1>Category Edit: Found <?= $statementCategories->rowCount() ?> Categories</h1>
     <form method="post" action="category_process.php">
         <legend>Category Edit</legend>

@@ -76,6 +76,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <!--Create the Category if it is new -->
     <form method="post" action="category_create.php">
         <legend>Create Category</legend>

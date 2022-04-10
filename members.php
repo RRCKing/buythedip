@@ -1,7 +1,7 @@
 <?php
     require('db_connect.php');
     include('authen.php');
-    include('nav.php');
+
     // Only admin role can access this page
     if($role == "admin"){
 
@@ -41,6 +41,10 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
+    <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <!-- How many database table rows did we SELECT? -->
     <h1>Home Page: Found <?= $statementMembers->rowCount() ?> Rows</h1>
 

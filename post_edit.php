@@ -59,6 +59,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <?php if ($postId): ?>
         <form method="post" action="post_process.php">
             <legend>Post Edit</legend>

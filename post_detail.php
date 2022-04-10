@@ -56,6 +56,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <h1>Rows Found: <?= $statementPost->rowCount() ?></h1>
     <h2>Post ID</h2>
     <p><?= $rowPost['Post_ID']?></p>

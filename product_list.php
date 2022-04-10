@@ -27,6 +27,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <h1>Product list: Found <?= $statement->rowCount() ?> Products</h1>
 
     <ol>        

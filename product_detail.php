@@ -38,6 +38,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <h1>Rows Found: <?= $statementProduct->rowCount() ?></h1>
     <h2>Product ID</h2>
     <p><?= $rowProduct['Product_ID']?></p>

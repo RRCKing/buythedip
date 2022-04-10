@@ -49,6 +49,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <form method="post" action="product_process.php">
         <legend>Product Edit</legend>
         <input type="hidden" name="product_id" value="<?= $rowProduct['Product_ID']?>">

@@ -129,6 +129,9 @@
 </head>
 <body>
     <?php include('nav.php')?>
+    <div id="search_bar">
+        <?php include('search_bar.php')?>
+    </div>
     <form method="post" action="product_create.php" enctype='multipart/form-data'>
         <legend>Create Product</legend>
         <ul>

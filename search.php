@@ -107,10 +107,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>Search</title>
 </head>
 <body>
-    <h1>Search Result</h1>
+    <?php include('nav.php')?>    
     <form method="post" action="search.php">
             <input id="search" name="search" value="<?=$searchInput?>">
             <select name="search_type" id="search_type">
@@ -144,6 +145,7 @@
             <input type="submit" name="command" value="search" />
             <input type="submit" name="command" value="clear" />
     </form>
+    <h1>Search Result</h1>
     <ol>
         <?php while($row = $statement->fetch()): ?>
             <li>
