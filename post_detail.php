@@ -94,11 +94,11 @@
                 
                 <li>
                     <p><?= $rowComment['Comment_Time'] ?> by <?= $rowComment['Login_Name'] ?></p>                    
-                    <?php if($role == 'admin' || $userLoginId == $rowComment['Member_ID']): ?>
+                    <?php if($role == 'admin'): ?>
                     <form method="post" action="comment_process.php">
                         <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">                
                         <input type="hidden" name="comment_id" value="<?= $rowComment['Comment_ID']?>">
-                        <input type="hidden" name="member_id" value="<?= $userLoginId?>">
+                        <input type="hidden" name="member_id" value="<?= $rowComment['Member_ID']?>">
                         <p><?= $rowComment['Comment'] ?></p>
                         <textarea name="comment" id="comment"><?= $rowComment['Comment'] ?></textarea>
                         <input type="submit" name="command" value="Edit" />
