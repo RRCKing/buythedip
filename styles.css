@@ -84,12 +84,13 @@ nav#nav_bar ul li a:hover{
 
 div#home_post_list ol{
     list-style: none;
+    padding: 0px;
 }
 
 div#home_post_list ol li{
     border: solid grey;
     border-radius: 5px;
-    padding: 0 2% 0 2%;
+    padding: 0% 2% 0% 2%;
     margin: 2% 0 2% 0;
 }
 

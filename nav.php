@@ -36,10 +36,12 @@
 </div>
 <nav id="nav_bar">
     <ul>
-        <li><a href="home.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="post_create.php">Create Posts</a></li>
+        <?php if ($role == 'member' || $role == 'admin'):?>
         <li><a href="product_create.php">Create Products</a></li>
         <li><a href="post_myposts.php">My Posts</a></li>
+        <?php endif ?>
     </ul>
 </nav>
 </header>
