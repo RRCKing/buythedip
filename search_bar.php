@@ -7,7 +7,7 @@
     $searchType = "";
     $searchTypeSelections = array("All"=>"all", "Post Title"=>"title", 
                                     "Post Content"=>"content", "Product Name"=>"product",
-                                    "Product Category"=>"product_category",
+                                    "Product Category"=>"product_category", "Store"=>"store",
                                     "Login Name"=>"login_name");
 
     // Get the category selection for search bar

@@ -7,7 +7,7 @@
     $searchType = "";
     $searchTypeSelections = array("All"=>"all", "Post Title"=>"title", 
                                     "Post Content"=>"content", "Product Name"=>"product",
-                                    "Product Category"=>"product_category",
+                                    "Product Category"=>"product_category", "Store"=>"store",
                                     "Login Name"=>"login_name");
     // for initialize the category filter dropdown box and set the memorized selection for the rest of the code.
     $categoryFilter = "";
@@ -19,7 +19,8 @@
         if($_POST['search_type'] == 'all'){
             $serachColumn = '(po.title LIKE :search OR po.content LIKE :search 
                                 OR pr.Product_Desc LIKE :search OR c.Category_Name LIKE :search 
-                                OR m.Login_Name LIKE :search)';
+                                OR m.Login_Name LIKE :search
+                                OR s.Store_Name LIKE :search)';
         }
 
         if($_POST['search_type'] == 'title'){
@@ -40,6 +41,10 @@
 
         if($_POST['search_type'] == 'login_name'){
             $serachColumn = 'm.Login_Name LIKE :search';
+        }
+
+        if($_POST['search_type'] == 'store'){
+            $serachColumn = 's.Store_Name LIKE :search';
         }
 
         // if category filter is not all(-1), add filter requirement.
