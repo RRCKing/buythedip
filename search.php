@@ -151,19 +151,24 @@
             <input type="submit" name="command" value="clear" />
     </form>
     <h1>Search Result</h1>
-    <ol>
-        <?php while($row = $statement->fetch()): ?>
-            <li>
-                <p><?= $row['Timestamp'] ?></p>
-            	<p>
-                    Category <?=$row['Category_Name']?> - 
-                    Title: <?= $row['Title'] ?> ID: <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Post_ID'] ?></a>
-                    <?php if ($row['Member_ID'] == $userLoginId): ?>
-                    <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>
-                    <?php endif ?>
-                </p>                        
-            </li>
-        <?php endwhile ?>
-    </ol>  
+    <div id="home_post_list">
+        <ol>
+            <?php while($row = $statement->fetch()): ?>
+                <li>
+                    <p>Post ID: <?= $row['Post_ID'] ?> | Category -  <?=$row['Category_Name']?> | Posted by: <?= $row['Timestamp'] ?>  </p>
+                    <h3>
+                        <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>                        
+                    </h3>
+                    <p>Product: <?=$row['Product_Desc']?></p>
+                    <img src=<?=$row['Img_Link50']?> alt="product_photo" />
+                    <?php if ($row['Member_ID'] == $userLoginId): ?>                    
+                    <p>
+                        <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>                        
+                    </p>
+                    <?php endif ?>                        
+                </li>
+            <?php endwhile ?>
+        </ol>
+    </div>
 </body>
 </html>

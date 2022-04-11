@@ -59,66 +59,57 @@
     <div id="search_bar">
         <?php include('search_bar.php')?>
     </div>
-    <h1>Rows Found: <?= $statementPost->rowCount() ?></h1>
-    <h2>Post ID</h2>
-    <p><?= $rowPost['Post_ID']?></p>
-    <h2>Title</h2>
-    <p><?= $rowPost['Title']?></p>
-    <h2>Content</h2>
-    <p><?= $rowPost['Content']?></p>
-    <h2>Product ID</h2>
-    <p><?= $rowPost['Product_ID']?></p>
-    <h2>Product Desc</h2>
-    <p><?= $rowProduct['Product_Desc']?></p>
-    <h2>Product Price</h2>
-    <p><?= $rowProduct['Price']?></p>
-    <h2>Category ID</h2>
-    <p><?= $rowProduct['Category_ID']?></p>
-    <h2>Category Name</h2>
-    <p><?= $rowProduct['Category_ID']?></p>
-    <h2>Store</h2>
-    <p><?= $rowAll['Store_Name']?></p>
-    <h2>Store ID</h2>
-    <p><?= $rowAll['Store_ID']?></p>
-    <h2>Member</h2>
-    <p><?= $rowAll['Login_Name']?></p>
+    <div id="post_body">
+    <p><?= $rowAll['Login_Name']?> posted by <?=$rowAll['Timestamp']?> </p>
+    <h2><?= $rowAll['Title']?></h2>
+    <p><?= $rowAll['Content']?></p>
+    <p>Product: <?= $rowProduct['Product_Desc']?> from <span id="store_name"><?= $rowAll['Store_Name']?></span></p>
     <!--only when the product has images-->
     <?php if (!empty($rowProduct['Img_Link'])):?>
-    <h2>Image</h2>
-    <img src=<?=$rowProduct['Img_Link']?> alt="" />
-    <h2>Image400</h2>
-    <img src=<?=$rowProduct['Img_Link400']?> alt="" />
-    <h2>Image50</h2>
-    <img src=<?=$rowProduct['Img_Link50']?> alt="" />
-    <?php endif ?>
+    <img src=<?=$rowProduct['Img_Link400']?> alt="product_400" />
+    <?php endif ?>    
+    </div> 
     
-    <?php if ($role == 'member' || $role == 'admin'): ?>
-        <form method="post" action="comment_process.php">
-        <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">
-        <input type="hidden" name="member_id" value="<?= $rowAll['Member_ID']?>">
-        <ul>
-            <li>
-                <p>Mem <?= $rowAll['Member_ID'] ?> and Post <?= $rowAll['Post_ID']?></p>
-                <label for="comment">Comment</label>
-                <textarea name="comment" id="comment"></textarea>
-            </li>        
-            <li>
-                <input type="submit" name="command" value="submit" />
-                <?php if($role == 'admin'): ?>
-                <input type="submit" name="command" value="Edit" />
-                <input type="submit" name="command" value="Delete" />
-                <?php endif ?>                
-            </li>
-        </ul>
-        </form>
-    <?php endif ?>
-    <ol>
-        <?php while($rowComment = $statementComment->fetch()): ?>
-            <li>
-                <p><?= $rowComment['Comment_Time'] ?> by <?= $rowComment['Login_Name'] ?></p>
-                <p><?= $rowComment['Comment'] ?></p>            	
-            </li>
-        <?php endwhile ?>
-    </ol>
+    <div id="comment_box">
+        <?php if ($role == 'member' || $role == 'admin'): ?>
+            <form method="post" action="comment_process.php">
+            <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">
+            <input type="hidden" name="member_id" value="<?= $userLoginId?>">
+            <ul>
+                <li>
+                    <p>Mem <?= $rowAll['Member_ID'] ?> and Post <?= $rowAll['Post_ID']?></p>
+                    <label for="comment">Comment</label>
+                    <textarea name="comment" id="comment"></textarea>
+                </li>        
+                <li>
+                    <input type="submit" name="command" value="submit" />                                 
+                </li>
+            </ul>
+            </form>
+        <?php endif ?>
+    </div>
+    <div id="comment_list">
+        <ol>
+            <?php while($rowComment = $statementComment->fetch()): ?>
+                
+                <li>
+                    <p><?= $rowComment['Comment_Time'] ?> by <?= $rowComment['Login_Name'] ?></p>                    
+                    <?php if($role == 'admin' || $userLoginId == $rowComment['Member_ID']): ?>
+                    <form method="post" action="comment_process.php">
+                        <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">                
+                        <input type="hidden" name="comment_id" value="<?= $rowComment['Comment_ID']?>">
+                        <input type="hidden" name="member_id" value="<?= $userLoginId?>">
+                        <p><?= $rowComment['Comment'] ?></p>
+                        <textarea name="comment" id="comment"><?= $rowComment['Comment'] ?></textarea>
+                        <input type="submit" name="command" value="Edit" />
+                        <input type="submit" name="command" value="Delete" />
+                    </form>
+                    <?php else: ?>
+                        <p><?= $rowComment['Comment'] ?></p>
+                    <?php endif ?>              	
+                </li>
+            <?php endwhile ?>
+        </ol>
+    </div>    
 </body>
 </html>
