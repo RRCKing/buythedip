@@ -116,59 +116,63 @@
     <title>Search</title>
 </head>
 <body>
+    <div id="top_section">
     <?php include('nav.php')?>    
-    <form method="post" action="search.php">
-            <input id="search" name="search" value="<?=$searchInput?>">
-            <select name="search_type" id="search_type">
-                <?php foreach($searchTypeSelections as $key => $value): ?>            
-                    <?php if ($searchType == $value): ?>
-                    <option value="<?=$value?>" selected>
-                        <?=$key?>
-                    </option>
-                    <?php else: ?>
-                    <option value="<?=$value?>">
-                        <?=$key?>
-                    </option>
-                    <?php endif ?>
-                <?php endforeach ?>
-            </select>
-            <label for="category_filter">Filtered by category:</label>
-            <select name="category_filter" id="category_filter">
-                <option value="-1" selected>All</option>
-                <?php while($row = $stmtCategories->fetch()): ?>            
-                    <?php if ($categoryFilter == $row['Category_ID']): ?>
-                    <option value="<?=$row['Category_ID']?>" selected>
-                        <?=$row['Category_Name']?>
-                    </option>
-                    <?php else: ?>
-                    <option value="<?=$row['Category_ID']?>">
-                        <?=$row['Category_Name']?>
-                    </option>
-                    <?php endif ?>
-                <?php endwhile ?>
-            </select>
-            <input type="submit" name="command" value="search" />
-            <input type="submit" name="command" value="clear" />
-    </form>
-    <h1>Search Result</h1>
-    <div id="home_post_list">
-        <ol>
-            <?php while($row = $statement->fetch()): ?>
-                <li>
-                    <p>Post ID: <?= $row['Post_ID'] ?> | Category -  <?=$row['Category_Name']?> | Posted by: <?= $row['Timestamp'] ?>  </p>
-                    <h3>
-                        <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>                        
-                    </h3>
-                    <p>Product: <?=$row['Product_Desc']?></p>
-                    <img src=<?=$row['Img_Link50']?> alt="product_photo" />
-                    <?php if ($row['Member_ID'] == $userLoginId): ?>                    
-                    <p>
-                        <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>                        
-                    </p>
-                    <?php endif ?>                        
-                </li>
-            <?php endwhile ?>
-        </ol>
+        <form method="post" action="search.php">
+                <input id="search" name="search" value="<?=$searchInput?>">
+                <select name="search_type" id="search_type">
+                    <?php foreach($searchTypeSelections as $key => $value): ?>            
+                        <?php if ($searchType == $value): ?>
+                        <option value="<?=$value?>" selected>
+                            <?=$key?>
+                        </option>
+                        <?php else: ?>
+                        <option value="<?=$value?>">
+                            <?=$key?>
+                        </option>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </select>
+                <label for="category_filter">Filtered by category:</label>
+                <select name="category_filter" id="category_filter">
+                    <option value="-1" selected>All</option>
+                    <?php while($row = $stmtCategories->fetch()): ?>            
+                        <?php if ($categoryFilter == $row['Category_ID']): ?>
+                        <option value="<?=$row['Category_ID']?>" selected>
+                            <?=$row['Category_Name']?>
+                        </option>
+                        <?php else: ?>
+                        <option value="<?=$row['Category_ID']?>">
+                            <?=$row['Category_Name']?>
+                        </option>
+                        <?php endif ?>
+                    <?php endwhile ?>
+                </select>
+                <input type="submit" name="command" value="search" />
+                <input type="submit" name="command" value="clear" />
+        </form>
     </div>
+    <div id="main_section">
+        <h1>Search Result</h1>
+        <div id="home_post_list">
+            <ol>
+                <?php while($row = $statement->fetch()): ?>
+                    <li>
+                        <p>Post ID: <?= $row['Post_ID'] ?> | Category -  <?=$row['Category_Name']?> | Posted by: <?= $row['Login_Name'] ?> at <?= $row['Timestamp'] ?>  </p>
+                        <h3>
+                            <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>                        
+                        </h3>
+                        <p><?=$row['Product_Desc']?> in $<?=$row['Price']?> at <?=$row['Store_Name']?></p>
+                        <img src=<?=$row['Img_Link50']?> alt="product_photo" />
+                        <?php if ($row['Member_ID'] == $userLoginId): ?>                    
+                        <p>
+                            <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>                        
+                        </p>
+                        <?php endif ?>                        
+                    </li>
+                <?php endwhile ?>
+            </ol>
+        </div>
+    </div>    
 </body>
 </html>

@@ -48,57 +48,60 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <?php include('nav.php')?>
-    <div id="search_bar">
-        <?php include('search_bar.php')?>
+    <div id="top_section">
+        <?php include('nav.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
+        </div>
     </div>
-    <form method="post" action="product_process.php">
-        <legend>Product Edit</legend>
-        <input type="hidden" name="product_id" value="<?= $rowProduct['Product_ID']?>">
-        <ul>
-            <li>
-                <label for="product_desc">Product Description</label>
-                <input id="product_desc" name="product_desc" value=<?=$rowProduct['Product_Desc']?>>
-            </li>
-            <li>
-                <label for="category_id">Choose a Category:</label>
-                <select name="category_id" id="category_id">
-                    <?php while($rowCat = $statementCategories->fetch()): ?>
-                        <option value="<?=$rowCat['Category_ID']?>">
-                            <?=$rowCat['Category_Name']?>
-                        </option>
-                    <?php endwhile ?>
-                </select>
-            </li>
-            <li>
-                <?php if ($rowProduct['Img_Link']):?>
-                    <div>
-                    <p>Remove the image? (Click Edit Button after selecting the image)</p>
-                    <input type="checkbox" id="img_link" name="img_link" value="<?=$rowProduct['Img_Link']?>">
-                    <label for="img_link"><?=$rowProduct['Img_Link']?></label>
-                    <p><img src=<?=$rowProduct['Img_Link']?> alt="<?=$rowProduct['Img_Link']?>" /></p>
-                    </div>
-                <?php endif ?>
-                <?php if ($rowProduct['Img_Link400']):?>
-                    <div>                        
-                    <input type="checkbox" id="img_link400" name="img_link400" value="<?=$rowProduct['Img_Link400']?>">
-                    <label for="img_link400"><?=$rowProduct['Img_Link400']?></label>
-                    <p><img src=<?=$rowProduct['Img_Link400']?> alt="<?=$rowProduct['Img_Link400']?>" /></p>
-                    </div>                        
-                <?php endif ?>
-                <?php if ($rowProduct['Img_Link50']):?>
-                    <input type="checkbox" id="img_link50" name="img_link50" value="<?=$rowProduct['Img_Link50']?>">
-                    <label for="img_link50"><?=$rowProduct['Img_Link50']?></label>
-                    <p><img src=<?=$rowProduct['Img_Link50']?> alt="<?=$rowProduct['Img_Link50']?>" /></p>
-                <?php endif ?>
-            </li>      
-            <li>
-                <input type="submit" name="command" value="Edit" />
-                <input type="submit" name="command" value="Delete" 
-                    onclick="return confirm('Are you sure you wish to delete this product?')" />
-            </li>
-        </ul>
-    </form>
-
+    <div id="main_section">
+        <form method="post" action="product_process.php">
+            <legend>Product Edit</legend>
+            <input type="hidden" name="product_id" value="<?= $rowProduct['Product_ID']?>">
+            <ul>
+                <li>
+                    <label for="product_desc">Product Description</label>
+                    <input id="product_desc" name="product_desc" value=<?=$rowProduct['Product_Desc']?>>
+                </li>
+                <li>
+                    <label for="category_id">Choose a Category:</label>
+                    <select name="category_id" id="category_id">
+                        <?php while($rowCat = $statementCategories->fetch()): ?>
+                            <option value="<?=$rowCat['Category_ID']?>">
+                                <?=$rowCat['Category_Name']?>
+                            </option>
+                        <?php endwhile ?>
+                    </select>
+                </li>
+                <li>
+                    <?php if ($rowProduct['Img_Link']):?>
+                        <div>
+                        <p>Remove the image? (Click Edit Button after selecting the image)</p>
+                        <input type="checkbox" id="img_link" name="img_link" value="<?=$rowProduct['Img_Link']?>">
+                        <label for="img_link"><?=$rowProduct['Img_Link']?></label>
+                        <p><img src=<?=$rowProduct['Img_Link']?> alt="<?=$rowProduct['Img_Link']?>" /></p>
+                        </div>
+                    <?php endif ?>
+                    <?php if ($rowProduct['Img_Link400']):?>
+                        <div>                        
+                        <input type="checkbox" id="img_link400" name="img_link400" value="<?=$rowProduct['Img_Link400']?>">
+                        <label for="img_link400"><?=$rowProduct['Img_Link400']?></label>
+                        <p><img src=<?=$rowProduct['Img_Link400']?> alt="<?=$rowProduct['Img_Link400']?>" /></p>
+                        </div>                        
+                    <?php endif ?>
+                    <?php if ($rowProduct['Img_Link50']):?>
+                        <input type="checkbox" id="img_link50" name="img_link50" value="<?=$rowProduct['Img_Link50']?>">
+                        <label for="img_link50"><?=$rowProduct['Img_Link50']?></label>
+                        <p><img src=<?=$rowProduct['Img_Link50']?> alt="<?=$rowProduct['Img_Link50']?>" /></p>
+                    <?php endif ?>
+                </li>      
+                <li>
+                    <input type="submit" name="command" value="Edit" />
+                    <input type="submit" name="command" value="Delete" 
+                        onclick="return confirm('Are you sure you wish to delete this product?')" />
+                </li>
+            </ul>
+        </form>
+    </div>
 </body>
 </html>

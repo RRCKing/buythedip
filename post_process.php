@@ -25,7 +25,10 @@
         header("Location: index.php");       
         exit;    
 
-    }elseif (isset($_POST['command']) && $_POST['command'] == 'Edit' && isset($_POST['title']) && isset($_POST['content']) && isset($_POST['post_id']) && is_numeric($_POST['post_id'])) {    	
+    }elseif (isset($_POST['command']) && $_POST['command'] == 'Edit' 
+                && isset($_POST['title']) && isset($_POST['content']) && !empty(trim($_POST['title'])) 
+                && !empty(trim($_POST['content'])) && !empty(trim($_POST['price']))
+                && isset($_POST['post_id']) && is_numeric($_POST['post_id'])) {    	
 
         // Sanitize user input to escape HTML entities and filter out dangerous characters.
         $postId = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
@@ -55,12 +58,33 @@
 
         // Redirect after edit.
         header("Location: post_detail.php?post_id={$postId}");
+        echo $_POST['title'];
         exit;
     	    
         
-    }elseif (isset($_POST['post_id']) && !is_numeric($_POST['post_id'])){
+    }elseif (isset($_POST['post_id'])){
 
-            header("Location: index.php");
+            echo '<h1>Error! Go back to <a href="index.php">Home Page</a></h1>';
+
+            //header("Location: index.php");
+            if (!is_numeric($_POST['post_id'])){
+                echo '<p>Post ID is not numeric.</p>';
+            }
+
+            if (empty(trim($_POST['title']))){
+                echo '<p>Title cannot be empty.</p>';
+            }
+
+            if (empty(trim($_POST['content']))){
+                echo "<p>Content cannot be empty.</p>";
+            }
+
+            if (empty(trim($_POST['price']))){
+                echo '<p>Content cannot be empty.</p>';
+            }elseif(!is_numeric($_POST['price'])){
+                echo '<p>Price is not valid.</p>';
+            }
+
             exit;
                 
     }else{

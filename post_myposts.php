@@ -110,29 +110,35 @@
     
 </head>
 <body>
+    <div id="top_section">
     <?php include('nav.php')?>
     <div id="search_bar">
         <?php include('search_bar.php')?>
     </div>
-    <h1>My Posts: Total <?= $statement->rowCount() ?> Posts</h1>
-    <div id="home_post_list">
-        <ol>
-            <?php while($row = $statement->fetch()): ?>
-                <?php if ($row['Member_ID'] == $userLoginId): ?>
-                <li>                       
-                    <p>Post ID: <?= $row['Post_ID'] ?> | Category -  <?=$row['Category_Name']?> | Posted by: <?= $row['Timestamp'] ?>  </p>
-                    <h3>
-                        <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>                        
-                    </h3>
-                    <p>Product: <?=$row['Product_Desc']?></p>
-                        <img src=<?=$row['Img_Link50']?> alt="product_photo" />                                        
-                    <p>
-                        <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>                        
-                    </p>                                          
-                </li>
-                <?php endif ?>  
-            <?php endwhile ?>
-        </ol>
     </div>
+    <div id="main_section">
+        <h1>My Posts: Total <?= $statement->rowCount() ?> Posts</h1>
+        <div id="home_post_list">
+            <ol>
+                <?php while($row = $statement->fetch()): ?>
+                    <?php if ($row['Member_ID'] == $userLoginId): ?>
+                    <li>                       
+                        <p>Post ID: <?= $row['Post_ID'] ?> | Category -  <?=$row['Category_Name']?> | Posted by: <?= $row['Timestamp'] ?>  </p>
+                        <h3>
+                            <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>                        
+                        </h3>
+                        <p>Product: <?=$row['Product_Desc']?></p>
+                            <img src=<?=$row['Img_Link50']?> alt="product_photo" />                                        
+                        <p>
+                            <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit <?= $row['Post_ID'] ?></a>                        
+                        </p>                                          
+                    </li>
+                    <?php endif ?>  
+                <?php endwhile ?>
+            </ol>
+        </div>
+
+    </div>
+    
 </body>
 </html>

@@ -62,31 +62,35 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <?php include('nav.php')?>
-    <div id="search_bar">
-        <?php include('search_bar.php')?>
+    <div id="top_section">
+        <?php include('nav.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
+        </div>
     </div>
-    <form method="post">
-    <table>
-        <tr>
-        <th>LOGIN</th>
-        </tr>
-        <tr>
-        <td>
-            <label>Username:</label>
-            <input type="text" name="username" id="username" value="" autocomplete="off" />
-        </td>
-        </tr>
-        <tr>
-        <td><label>Password:</label>
-            <input type="password" name="password" id="password" value="" autocomplete="off" /></td>
-        </tr>
-        <tr>
-        <td>
-            <input type="submit" name="submitBtnLogin" id="submitBtnLogin" value="Login" />
-            <span class="loginMsg"><?php echo @$msg;?></span>
-        </td>
-        </tr>
-    </table>
-    </form>
+    <div id="main_section">
+        <form method="post">
+        <table>
+            <tr>
+            <th>LOGIN</th>
+            </tr>
+            <tr>
+            <td>
+                <label>Username:</label>
+                <input type="text" name="username" id="username" value="" autocomplete="off" />
+            </td>
+            </tr>
+            <tr>
+            <td><label>Password:</label>
+                <input type="password" name="password" id="password" value="" autocomplete="off" /></td>
+            </tr>
+            <tr>
+            <td>
+                <input type="submit" name="submitBtnLogin" id="submitBtnLogin" value="Login" />
+                <span class="loginMsg"><?php echo @$msg;?></span>
+            </td>
+            </tr>
+        </table>
+        </form>
+    </div>    
 </body>

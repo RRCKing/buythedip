@@ -17,6 +17,19 @@
         $categoryId = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
         $categoryName = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        // Check any same category name
+        $querySameCat = "SELECT * FROM categories WHERE Category_Name = ?";
+        $statementSameCat = $db->prepare($querySameCat);
+        $statementSameCat->execute([$categoryName]);
+
+        $sameCat = $statementSameCat->fetch();
+
+        // if register the same name, stop process and show message
+        if ($sameCat){
+            echo 'The category name is duplicated, please try again. <a href="category_edit.php">Go back to create post</a>';
+            exit;
+        }
+
         // Build the parameterized SQL query and bind to the above sanitized values.
         $queryEdit = "UPDATE categories SET Category_Name = :category_name  
                         WHERE Category_ID = :category_id";

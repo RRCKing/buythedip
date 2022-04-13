@@ -8,11 +8,11 @@
     <div id="top_header_right">
         <div id="top_greeting_message">
             <span>Hi, <?=$userLoginName?></span>
-            <form method="post" action="logout.php" id="logout">
             <?php if ($role == 'member' || $role == 'admin'):?>
-                <input type="submit" name="logout" id="logout" value="Logout" />
-            <?php endif ?>
-            </form>    
+            <form method="post" action="logout.php" id="logout">            
+                <input type="submit" name="logout" id="logout" value="Logout" />            
+            </form>
+            <?php endif ?>    
         </div>
         <div id="top_function_lists">
             <?php if ($role == 'admin'):?>
@@ -36,10 +36,11 @@
 </div>
 <nav id="nav_bar">
     <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="post_create.php">Create Posts</a></li>
+        <li><a href="index.php">Home</a></li>        
         <?php if ($role == 'member' || $role == 'admin'):?>
+        <li><a href="post_create.php">Create Posts</a></li>
         <li><a href="product_create.php">Create Products</a></li>
+        <li><a href="category_edit.php">Edit Category</a></li>
         <li><a href="post_myposts.php">My Posts</a></li>
         <?php endif ?>
     </ul>

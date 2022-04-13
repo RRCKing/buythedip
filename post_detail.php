@@ -56,66 +56,76 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <?php include('nav.php')?>
-    <div id="search_bar">
-        <?php include('search_bar.php')?>
-    </div>
-    <div id="post_body">
-    <p><?= $rowAll['Login_Name']?> posted by <?=$rowAll['Timestamp']?> </p>
-    <h2><?= $rowAll['Title']?></h2>
-    <p><?= $rowAll['Content']?></p>
-    <p>Product: <?= $rowProduct['Product_Desc']?> from <span id="store_name"><?= $rowAll['Store_Name']?></span></p>
-    <!--only when the product has images-->
-    <?php if (!empty($rowProduct['Img_Link'])):?>
-    <img src=<?=$rowProduct['Img_Link400']?> alt="product_400" />
-    <?php endif ?>    
-    </div> 
-    
-    <?php if ($role == 'member' || $role == 'admin'): ?>
-        <div id="comment_box">
-        
-            <form method="post" action="comment_process.php">
-            <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">
-            <input type="hidden" name="member_id" value="<?= $userLoginId?>">
-            <ul>
-                <li>
-                    <p><label for="comment">Comment</label></p>
-                    <textarea name="comment" id="comment"></textarea>
-                </li>
-                <li>
-                    <p><img src="captcha.php" /></p>
-                    <input type="text" name="captcha" />
-                </li>            
-                <li>
-                    <input type="submit" name="command" value="submit" />                                 
-                </li>
-            </ul>
-            </form>
-        
+    <div id="top_section">
+        <?php include('nav.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
         </div>
-    <?php endif ?>
-    <div id="comment_list">
-        <ol>
-            <?php while($rowComment = $statementComment->fetch()): ?>
-                
-                <li>
-                    <p><?= $rowComment['Comment_Time'] ?> by <?= $rowComment['Login_Name'] ?></p>                    
-                    <?php if($role == 'admin'): ?>
-                    <form method="post" action="comment_process.php">
-                        <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">                
-                        <input type="hidden" name="comment_id" value="<?= $rowComment['Comment_ID']?>">
-                        <input type="hidden" name="member_id" value="<?= $rowComment['Member_ID']?>">
-                        <p><?= $rowComment['Comment'] ?></p>
-                        <textarea name="comment" id="comment"><?= $rowComment['Comment'] ?></textarea>
-                        <input type="submit" name="command" value="Edit" />
-                        <input type="submit" name="command" value="Delete" />
-                    </form>
-                    <?php else: ?>
-                        <p><?= $rowComment['Comment'] ?></p>
-                    <?php endif ?>              	
-                </li>
-            <?php endwhile ?>
-        </ol>
-    </div>    
+    </div>
+    <div id="main_section">
+        <div id="post_body">
+        <p><?= $rowAll['Login_Name']?> posted by <?=$rowAll['Timestamp']?> </p>
+        <h2><?= $rowAll['Title']?></h2>
+        <p><?= $rowAll['Content']?></p>
+        <p>Product: <?= $rowProduct['Product_Desc']?> from <span id="store_name"><?= $rowAll['Store_Name']?></span></p>
+        <p>Price: <?= $rowAll['Price']?></p>
+        <!--only when the product has images-->
+        <?php if (!empty($rowProduct['Img_Link'])):?>
+        <img src=<?=$rowProduct['Img_Link400']?> alt="product_400" />
+        <?php endif ?>
+        <?php if ($rowAll['Member_ID'] == $userLoginId): ?>
+            <p><a href="post_edit.php?post_id=<?= $rowAll['Post_ID'] ?>" target="_blank">Edit</a></p>  
+        <?php endif ?>
+        </div> 
+        
+        <?php if ($role == 'member' || $role == 'admin'): ?>
+            <div id="comment_box">
+            
+                <form method="post" action="comment_process.php">
+                <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">
+                <input type="hidden" name="member_id" value="<?= $userLoginId?>">
+                <ul>
+                    <li>
+                        <p><label for="comment">Comment</label></p>
+                        <textarea name="comment" id="comment"></textarea>
+                    </li>
+                    <li>
+                        <p><img src="captcha.php" /></p>
+                        <input type="text" name="captcha" />
+                    </li>            
+                    <li>
+                        <input type="submit" name="command" value="submit" />                                 
+                    </li>
+                </ul>
+                </form>
+            
+            </div>
+        <?php endif ?>
+        <div id="comment_list">
+            <ol>
+                <?php while($rowComment = $statementComment->fetch()): ?>
+                    
+                    <li>
+                        <p><?= $rowComment['Comment_Time'] ?> by <?= $rowComment['Login_Name'] ?></p>                    
+                        <?php if($role == 'admin'): ?>
+                        <form method="post" action="comment_process.php">
+                            <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">                
+                            <input type="hidden" name="comment_id" value="<?= $rowComment['Comment_ID']?>">
+                            <input type="hidden" name="member_id" value="<?= $rowComment['Member_ID']?>">
+                            <p><?= $rowComment['Comment'] ?></p>
+                            <textarea name="comment" id="comment"><?= $rowComment['Comment'] ?></textarea>
+                            <input type="submit" name="command" value="Edit" />
+                            <input type="submit" name="command" value="Delete" />
+                        </form>
+                        <?php else: ?>
+                            <p><?= $rowComment['Comment'] ?></p>
+                        <?php endif ?>              	
+                    </li>
+                <?php endwhile ?>
+            </ol>
+        </div>
+
+    </div>
+        
 </body>
 </html>

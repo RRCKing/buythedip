@@ -41,23 +41,28 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <?php include('nav.php')?>
-    <div id="search_bar">
-        <?php include('search_bar.php')?>
+    <div id="top_section">
+        <?php include('nav.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
+        </div>
     </div>
-    <!-- How many database table rows did we SELECT? -->
-    <h1>Home Page: Found <?= $statementMembers->rowCount() ?> Rows</h1>
+    <div id="main_section">
+        <!-- How many database table rows did we SELECT? -->
+        <h1>Home Page: Found <?= $statementMembers->rowCount() ?> Rows</h1>
 
-    <ol>
-        <!-- Fetch each table row in turn. Each $row is a table row hash.
-             Fetch returns FALSE when out og rows, halting the loop. -->
-        <?php while($row = $statementMembers->fetch()): ?>
-            <li>
-            	<?= $row['Login_Name'] ?> and ID is <?= $row['Member_ID'] ?> and Role is <?= $row['Role'] ?>
-                <a href="member_edit.php?member_id=<?= $row['Member_ID'] ?>">Edit Member</a>
-            </li>
-        <?php endwhile ?>
-    </ol>
-    <p><a href="member_add.php">Add Member</a></p>
+        <ol>
+            <!-- Fetch each table row in turn. Each $row is a table row hash.
+                Fetch returns FALSE when out og rows, halting the loop. -->
+            <?php while($row = $statementMembers->fetch()): ?>
+                <li>
+                    <?= $row['Login_Name'] ?> and ID is <?= $row['Member_ID'] ?> and Role is <?= $row['Role'] ?>
+                    <a href="member_edit.php?member_id=<?= $row['Member_ID'] ?>">Edit Member</a>
+                </li>
+            <?php endwhile ?>
+        </ol>
+        <p><a href="member_add.php">Add Member</a></p>
+    </div>
+    
 </body>
 </html>

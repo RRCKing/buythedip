@@ -15,7 +15,7 @@ imagecolorallocate($image, 255, 255, 255); // set background color
  
 $text_color = imagecolorallocate($image, 0, 0, 0); // set captcha text color
  
-imagettftext($image, $font_size, 2, 15, 30, $text_color, 'VLADIMIR.TTF', $captcha_num);
+imagettftext($image, $font_size, 2, 15, 30, $text_color, 'arial.TTF', $captcha_num);
 imagejpeg($image);
 
 ?>

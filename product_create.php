@@ -16,8 +16,14 @@
     if (!isset($_SESSION['sess_role'])){
         header("Location: index.php"); 
         exit;
-    }else{
-        $sessMemberId = $_SESSION['sess_member_id'];
+    }
+
+    if($_POST && empty(trim($_POST['product_desc']))){
+
+        // Only can echo and exit for not showing the product create form if error.
+        echo '<h1>Product Description cannot be empty.</h1>';
+        header("Location: post_create.php");
+        exit;
     }
 
     if ($_POST && !empty($_POST['product_desc'])) {
@@ -134,46 +140,50 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
+    <div id="top_section">
     <?php include('nav.php')?>
-    <div id="search_bar">
-        <?php include('search_bar.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
+        </div>
     </div>
-    <form method="post" action="product_create.php" enctype='multipart/form-data'>
-        <legend>Create Product</legend>
-        <ul>
-            <li>
-                <label for="product_desc">Product Description</label>
-                <input id="product_desc" name="product_desc">
-            </li>
-            <li>
-                <label for="category_id">Choose a category:</label>
-                <select name="category_id" id="category_id">
-                    <?php while($row = $stmtCategories->fetch()): ?>
-                        <option value="<?=$row['Category_ID']?>">
-                            <?=$row['Category_Name']?>
-                        </option>
-                    <?php endwhile ?>
-                </select>
-            </li>
-            <li>
-                <label for='image'>Image Filename:</label>
-                <input type='file' name='image' id='image'>
-            </li>
-            <li>
-                <input type="submit" name="command" value="submit" />
-            </li>
-        </ul>
-    </form>
-    <?php if ($upload_error_detected): ?>
-        <p>Error Number: <?= $_FILES['image']['error'] ?></p>
-    <?php elseif ($image_upload_detected): ?>
-    <?php if ($invalid_file): ?>
-        <p>File type invalid, only '.jpg', 'jpeg', '.png', and '.gif' allowed.</p>
-    <?php endif ?>
-        <p>Client-Side Filename: <?= $_FILES['image']['name'] ?></p>
-        <p>Apparent Mime Type:   <?= $_FILES['image']['type'] ?></p>
-        <p>Size in Bytes:        <?= $_FILES['image']['size'] ?></p>
-        <p>Temporary Path:       <?= $_FILES['image']['tmp_name'] ?></p>
-    <?php endif ?>
+    <div id="main_section">
+        <form method="post" action="product_create.php" enctype='multipart/form-data'>
+            <legend>Create Product</legend>
+            <ul>
+                <li>
+                    <label for="product_desc">Product Description</label>
+                    <input id="product_desc" name="product_desc">
+                </li>
+                <li>
+                    <label for="category_id">Choose a category:</label>
+                    <select name="category_id" id="category_id">
+                        <?php while($row = $stmtCategories->fetch()): ?>
+                            <option value="<?=$row['Category_ID']?>">
+                                <?=$row['Category_Name']?>
+                            </option>
+                        <?php endwhile ?>
+                    </select>
+                </li>
+                <li>
+                    <label for='image'>Image Filename:</label>
+                    <input type='file' name='image' id='image'>
+                </li>
+                <li>
+                    <input type="submit" name="command" value="submit" />
+                </li>
+            </ul>
+        </form>
+        <?php if ($upload_error_detected): ?>
+            <p>Error Number: <?= $_FILES['image']['error'] ?></p>
+        <?php elseif ($image_upload_detected): ?>
+        <?php if ($invalid_file): ?>
+            <p>File type invalid, only '.jpg', 'jpeg', '.png', and '.gif' allowed.</p>
+        <?php endif ?>
+            <p>Client-Side Filename: <?= $_FILES['image']['name'] ?></p>
+            <p>Apparent Mime Type:   <?= $_FILES['image']['type'] ?></p>
+            <p>Size in Bytes:        <?= $_FILES['image']['size'] ?></p>
+            <p>Temporary Path:       <?= $_FILES['image']['tmp_name'] ?></p>
+        <?php endif ?>
+    </div>
 </body>
 </html>

@@ -2,8 +2,6 @@
     require('db_connect.php');
     include('authen.php');
 
-    include('nav.php');
-
     // Only admin role can access this page
     if($role == "admin"){
 
@@ -60,6 +58,9 @@
 
         }
     }
+
+    // Get the Role selection
+    $roleSelection = ['admin', 'member'];
 ?>
 
 <!DOCTYPE html>
@@ -70,40 +71,55 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <form method="post" action="member_process.php">
-        <ul>
-            <li>
-                <label for="login_name">Login Name</label>
-                <input id="login_name" name="login_name">
-            </li>
-            <li>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" >
-            </li>
-            <li>
-                <label for="email">Email:</label>
-                <input type="email" name="email" pattern=".+@buythedip\.com" size="30" required>
-            </li>
-            <li>
-                <label for="street">Street</label>
-                <input id="street" name="street">
-            </li>
-            <li>
-                <label for="area">Area</label>
-                <input id="area" name="area">
-            </li>
-            <li>
-                <label for="bonus">Bonus</label>
-                <input id="bonus" name="bonus">
-            </li>
-            <li>
-                <label for="role">Role</label>
-                <input id="role" name="role">
-            </li>
-            <li>
-                <input type="submit" name="command" value="Add" />
-            </li>
-        <ul>
-    </form>
+    <div id="top_section">
+        <?php include('nav.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
+        </div>
+    </div>
+    <div id="main_section">
+        <form method="post" action="member_process.php">
+            <ul>
+                <li>
+                    <label for="login_name">Login Name</label>
+                    <input id="login_name" name="login_name">
+                </li>
+                <li>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" >
+                </li>
+                <li>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" pattern=".+@buythedip\.com" size="30" required>
+                </li>
+                <li>
+                    <label for="street">Street</label>
+                    <input id="street" name="street">
+                </li>
+                <li>
+                    <label for="area">Area</label>
+                    <input id="area" name="area">
+                </li>
+                <li>
+                    <label for="bonus">Bonus</label>
+                    <input id="bonus" name="bonus">
+                </li>
+                <li>
+                    <label for="role">Role:</label>
+                    <select name="role" id="role">
+                        <?php foreach($roleSelection as $row): ?>
+                            <option value="<?=$row?>">
+                                <?=$row?>
+                            </option>
+                        <?php endforeach ?>
+                    </select>
+                </li>
+                <li>
+                    <input type="submit" name="command" value="Add" />
+                </li>
+            <ul>
+        </form>
+    </div>
+    
 </body>
 </html>

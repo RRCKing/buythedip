@@ -1,4 +1,22 @@
 
+body{
+    background-color: lightgrey;
+    font-family: 'Arial';
+}
+
+div#top_section, div#main_section{
+    width: 80%;
+    margin: 3% auto;
+    background-color: white;
+    border-radius: 8px;
+    border: solid grey;
+    border-width: thin; 
+}
+
+div#header{
+    margin: 2%;
+}
+
 div#header_logo a img{
     margin: 10px 0px 0px 0px;
     width:200px;
@@ -23,6 +41,7 @@ div#top_header_right{
 
 div#top_greeting_message{
     margin-left: auto;
+    width: 140px;
 }
 
 ul{
@@ -63,6 +82,11 @@ ul#top_function_list2 a:hover{
     text-decoration: underline;
 }
 
+nav#nav_bar{
+    border-top: solid grey thin;    
+    border-bottom: solid grey thin;
+}
+
 nav#nav_bar ul{
     display:flex;
     flex-wrap: wrap;
@@ -82,6 +106,24 @@ nav#nav_bar ul li a:hover{
     text-decoration: underline;
 }
 
+div#search_bar{
+    margin: 2%;
+}
+
+/**** finished Top and Search bar ***/
+
+#main_section h1{
+    margin: 2%;
+}
+
+form{
+    margin: 3%;
+}
+
+label{
+    width: 200px;
+}
+
 div#home_post_list ol{
     list-style: none;
     padding: 0px;
@@ -91,7 +133,7 @@ div#home_post_list ol li{
     border: solid grey;
     border-radius: 5px;
     padding: 0% 2% 0% 2%;
-    margin: 2% 0 2% 0;
+    margin: 2%;
 }
 
 
@@ -126,12 +168,11 @@ div#comment_box{
 div#comment_list ol{
     list-style: none;
     padding: 0px;
-    margin-left:2%;
 }
 
-div#comment_list ol li{
+#comment_list ol li{
     border: solid grey;
     border-radius: 5px;
     padding: 0% 2% 0% 2%;
-    margin: 2% 0% 0% 0%;
+    margin: 2%;
 }

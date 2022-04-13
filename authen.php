@@ -3,7 +3,7 @@
 
     $role = '';
     $userLoginId = '';
-    $userLoginName = 'you are guest, please signup or login.';
+    $userLoginName = 'Guest.';
     if(isset($_SESSION['sess_member_id']) && $_SESSION['sess_member_id'] != "") {
         $role = $_SESSION['sess_role'];
         $userLoginId = $_SESSION['sess_member_id'];

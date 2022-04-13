@@ -26,19 +26,26 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <?php include('nav.php')?>
-    <div id="search_bar">
-        <?php include('search_bar.php')?>
+    <div id="top_section">
+        <?php include('nav.php')?>
+        <div id="search_bar">
+            <?php include('search_bar.php')?>
+        </div>
     </div>
+    
+    <div id="main_section">
     <h1>Product list: Found <?= $statement->rowCount() ?> Products</h1>
 
     <ol>        
         <?php while($row = $statement->fetch()): ?>
             <li>
-            	<?= $row['Product_Desc'] ?> and ID is <a href="product_detail.php?id=<?= $row['Product_ID'] ?>" target="_blank"><?= $row['Product_ID'] ?></a>
+                <?= $row['Product_Desc'] ?> and ID is <a href="product_detail.php?id=<?= $row['Product_ID'] ?>" target="_blank"><?= $row['Product_ID'] ?></a>
                 <a href="product_edit.php?product_id=<?= $row['Product_ID'] ?>" target="_blank">Edit <?= $row['Product_ID'] ?></a>
             </li>
         <?php endwhile ?>
     </ol>
+
+    </div>
+    
 </body>
 </html>
