@@ -164,10 +164,12 @@
             <li>
                 <label for="price">Price</label>
                 <input id="price" name="price">
-            </li>        
+            </li>
             <li>
-                <img src="captcha.php" />
+                <p><img src="captcha.php" alt="captcha"/></p>
                 <input type="text" name="captcha" />
+            </li>        
+            <li>                
                 <input type="submit" name="command" value="submit" />
             </li>
         </ul>

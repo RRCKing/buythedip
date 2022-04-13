@@ -40,7 +40,8 @@
     $queryComment = "SELECT * FROM comments c 
                         JOIN posts po ON po.Post_ID = c.Post_ID
                         JOIN members m ON m.Member_ID = c.Member_ID 
-                        WHERE po.Post_ID = :post_id";
+                        WHERE po.Post_ID = :post_id
+                        ORDER BY c.Comment_Time DESC";
     
     $statementComment = $db->prepare($queryComment); 
     $statementComment->bindValue('post_id', $postId);

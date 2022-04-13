@@ -3,12 +3,10 @@
     include('authen.php');
 
     // Only logged in can access this page, otherwise redirect to index.php.
-    $sessMemberId = "";
+    $selectedProduct = "";
     if (!isset($_SESSION['sess_role'])){
         header("Location: index.php"); 
         exit;
-    }else{
-        $sessMemberId = $_SESSION['sess_member_id'];
     }
 
     if (isset($_GET['post_id']) && is_numeric($_GET['post_id'])){
@@ -35,6 +33,8 @@
 
         // Fetch the new row selected by primary key id.
         $rowProduct = $statementProduct->fetch();
+
+        $selectedProduct = $rowProduct['Img_Link400'];
 
         //$img = '<img src="data:image/jpeg;base64,'.base64_encode($rowProduct['Images']).'"/>';
     }
@@ -92,6 +92,9 @@
                             <?php endif ?>
                         <?php endwhile ?>
                     </select>
+                </li>
+                <li>
+                    <img src="<?=$selectedProduct?>" alt="product_img">
                 </li>
                 <li>
                     <label for="price">Price</label>

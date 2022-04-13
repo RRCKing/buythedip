@@ -2,17 +2,11 @@
     require('db_connect.php');
     include('authen.php');
 
-    // Only admin role can access this page
-    if($role != "admin"){
-
-        // Redirect if not admin
-        //header("Location: index.php");       
-        //exit;
-        
-        echo '<h1>Admin only!</h1>';
+    // Only logged in can access this page, otherwise redirect to index.php.
+    if (!isset($_SESSION['sess_role'])){
+        header("Location: index.php"); 
         exit;
-
-    }  
+    } 
     
     if (isset($_POST['command']) && $_POST['command'] == 'Delete' && isset($_POST['post_id']) && is_numeric($_POST['post_id'])) {
 

@@ -5,6 +5,7 @@
     //assign the search input
     $searchInput = "";
     $searchType = "";
+    $categoryFilter = "";
     $searchTypeSelections = array("All"=>"all", "Post Title"=>"title", 
                                     "Post Content"=>"content", "Product Name"=>"product",
                                     "Product Category"=>"product_category", "Store"=>"store",
