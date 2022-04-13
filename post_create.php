@@ -13,6 +13,13 @@
 
     if ($_POST && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['price'])) {
         
+        if($_POST['captcha'] == $_SESSION['code']){
+			echo "correct captcha";
+		}else{
+			echo "Invalid captcha";
+            exit;
+		}
+        
         if (!is_numeric($_POST['price'])){
             echo "Price is not valid.\n";
             echo "<a href='post_create.php'>Try create again</a>";
@@ -65,6 +72,7 @@
     $stmtCategories = $db->prepare($queryCategories);
     $stmtCategories->execute();
     $rowCategory = $stmtCategories -> fetch();
+
 ?>
 
 <!DOCTYPE html>
@@ -158,6 +166,8 @@
                 <input id="price" name="price">
             </li>        
             <li>
+                <img src="captcha.php" />
+                <input type="text" name="captcha" />
                 <input type="submit" name="command" value="submit" />
             </li>
         </ul>

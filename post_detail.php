@@ -70,24 +70,29 @@
     <?php endif ?>    
     </div> 
     
-    <div id="comment_box">
-        <?php if ($role == 'member' || $role == 'admin'): ?>
+    <?php if ($role == 'member' || $role == 'admin'): ?>
+        <div id="comment_box">
+        
             <form method="post" action="comment_process.php">
             <input type="hidden" name="post_id" value="<?= $rowAll['Post_ID']?>">
             <input type="hidden" name="member_id" value="<?= $userLoginId?>">
             <ul>
                 <li>
-                    <p>Mem <?= $rowAll['Member_ID'] ?> and Post <?= $rowAll['Post_ID']?></p>
-                    <label for="comment">Comment</label>
+                    <p><label for="comment">Comment</label></p>
                     <textarea name="comment" id="comment"></textarea>
-                </li>        
+                </li>
+                <li>
+                    <p><img src="captcha.php" /></p>
+                    <input type="text" name="captcha" />
+                </li>            
                 <li>
                     <input type="submit" name="command" value="submit" />                                 
                 </li>
             </ul>
             </form>
-        <?php endif ?>
-    </div>
+        
+        </div>
+    <?php endif ?>
     <div id="comment_list">
         <ol>
             <?php while($rowComment = $statementComment->fetch()): ?>

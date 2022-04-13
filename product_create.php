@@ -117,7 +117,13 @@
             
             header("Location: post_create.php");
         }        
-    }    
+    }
+    
+    // Get the category selection
+    $queryCategories = "SELECT * FROM Categories";
+    $stmtCategories = $db->prepare($queryCategories);
+    $stmtCategories->execute();
+    $rowCategory = $stmtCategories -> fetch();
 ?>
 
 <!DOCTYPE html>

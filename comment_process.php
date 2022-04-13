@@ -3,12 +3,16 @@
     include('authen.php');
 
     // Only logged in can access this page, otherwise redirect to index.php.
-    $sessMemberId = "";
     if (!isset($_SESSION['sess_role'])){
         header("Location: index.php"); 
         exit;
+    }
+
+    if($_POST['captcha'] == $_SESSION['code']){
+        echo "correct captcha";
     }else{
-        $sessMemberId = $_SESSION['sess_member_id'];
+        echo "Invalid captcha";
+        exit;
     }
 
     if (isset($_POST['command']) && $_POST['command'] == 'submit' && $_POST && !empty($_POST['post_id']) && !empty($_POST['member_id']) && !empty($_POST['comment'])) {
