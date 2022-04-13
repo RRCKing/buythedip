@@ -73,23 +73,23 @@
             <li>
                 <?php if ($rowProduct['Img_Link']):?>
                     <div>
-                    <p>Remove the image?</p>
-                    <input type="checkbox" id="img_link" name="img_link">
+                    <p>Remove the image? (Click Edit Button after selecting the image)</p>
+                    <input type="checkbox" id="img_link" name="img_link" value="<?=$rowProduct['Img_Link']?>">
                     <label for="img_link"><?=$rowProduct['Img_Link']?></label>
-                    <img src=<?=$rowProduct['Img_Link']?> alt="<?=$rowProduct['Img_Link']?>" />
+                    <p><img src=<?=$rowProduct['Img_Link']?> alt="<?=$rowProduct['Img_Link']?>" /></p>
                     </div>
                 <?php endif ?>
                 <?php if ($rowProduct['Img_Link400']):?>
                     <div>                        
-                    <input type="checkbox" id="img_link400" name="img_link400">
+                    <input type="checkbox" id="img_link400" name="img_link400" value="<?=$rowProduct['Img_Link400']?>">
                     <label for="img_link400"><?=$rowProduct['Img_Link400']?></label>
-                    <img src=<?=$rowProduct['Img_Link400']?> alt="<?=$rowProduct['Img_Link400']?>" />
+                    <p><img src=<?=$rowProduct['Img_Link400']?> alt="<?=$rowProduct['Img_Link400']?>" /></p>
                     </div>                        
                 <?php endif ?>
                 <?php if ($rowProduct['Img_Link50']):?>
-                    <input type="checkbox" id="img_link50" name="img_link50">
+                    <input type="checkbox" id="img_link50" name="img_link50" value="<?=$rowProduct['Img_Link50']?>">
                     <label for="img_link50"><?=$rowProduct['Img_Link50']?></label>
-                    <img src=<?=$rowProduct['Img_Link50']?> alt="<?=$rowProduct['Img_Link50']?>" />
+                    <p><img src=<?=$rowProduct['Img_Link50']?> alt="<?=$rowProduct['Img_Link50']?>" /></p>
                 <?php endif ?>
             </li>      
             <li>

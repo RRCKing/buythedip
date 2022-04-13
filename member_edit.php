@@ -31,6 +31,8 @@
         exit;
     } 
 
+    // Get the Role selection
+    $roleSelection = ['admin', 'member'];
     
 
 ?>
@@ -38,7 +40,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Post Details</title>
+    <title>Manage Members</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
@@ -74,11 +76,23 @@
                     <input id="bonus" name="bonus" value=<?=$rowMember['Bonus']?>>
                 </li>
                 <li>
-                    <label for="role">Role</label>
-                    <input id="role" name="role" value=<?=$rowMember['Role']?>>
+                    <label for="role">Role:</label>
+                    <select name="role" id="role">
+                        <?php foreach($roleSelection as $row): ?>
+                            <?php if($rowMember['Role'] == $row): ?>
+                                <option value="<?=$row?>" selected="selected">
+                                    <?=$row?>
+                                </option>
+                            <?php else: ?>
+                                <option value="<?=$row?>">
+                                    <?=$row?>
+                                </option>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    </select>
                 </li>
                 <li>
-                    <input type="submit" name="command" value="Edit" />
+                    <input type="submit" name="command" value="Update" />
                     <input type="submit" name="command" value="Delete" 
                         onclick="return confirm('Are you sure you wish to delete this member?')" />
                 </li>

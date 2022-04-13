@@ -53,7 +53,7 @@
         header("Location: members.php");       
         exit;    
 
-    }elseif (isset($_POST['command']) && $_POST['command'] == 'Edit' && isset($_POST['member_id']) && is_numeric($_POST['member_id']) && isset($_POST['password'])) {    	
+    }elseif (isset($_POST['command']) && $_POST['command'] == 'Update' && isset($_POST['member_id']) && is_numeric($_POST['member_id']) && isset($_POST['password'])) {    	
 
         // Sanitize user input to escape HTML entities and filter out dangerous characters.
         $loginName = filter_input(INPUT_POST, 'login_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -108,12 +108,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <?php if (empty($_POST['title']) || empty($_POST['content'])): ?>
-		<h1>An error occured while processing your post.</h1>
-		  <p>
-		    Both the title and content must be at least one character.  </p>
-		<a href="index.php">Return Home</a>
-    	<?php endif ?>
+        <p>Error.</p>
     </div> <!-- END div id="wrapper" -->
 </body>
 </html>

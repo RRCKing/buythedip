@@ -43,6 +43,10 @@
             $statementImgDel = $db->prepare($imgDel);
             $statementImgDel->bindValue('product_id', $productId);
             $statementImgDel->execute();
+
+            $imgPath = $_POST['img_link'];
+
+            rename($imgPath, 'del'.DIRECTORY_SEPARATOR.$imgPath);
         }
 
         if (isset($_POST['img_link400'])){
@@ -50,6 +54,10 @@
             $statementImgDel = $db->prepare($imgDel);
             $statementImgDel->bindValue('product_id', $productId);
             $statementImgDel->execute();
+
+            $imgPath = $_POST['img_link400'];
+
+            rename($imgPath, 'del'.DIRECTORY_SEPARATOR.$imgPath);
         }
 
         if (isset($_POST['img_link50'])){
@@ -57,6 +65,10 @@
             $statementImgDel = $db->prepare($imgDel);
             $statementImgDel->bindValue('product_id', $productId);
             $statementImgDel->execute();
+
+            $imgPath = $_POST['img_link50'];
+
+            rename($imgPath, 'del'.DIRECTORY_SEPARATOR.$imgPath);
         }
 
         // Build the parameterized SQL query and bind to the above sanitized values.
@@ -95,12 +107,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <?php if (empty($_POST['product_id']) || empty($_POST['price'])): ?>
-		<h1>An error occured while processing your post.</h1>
-		  <p>
-		    Both the title and content must be at least one character.  </p>
-		<a href="index.php">Return Home</a>
-    	<?php endif ?>
+        <p>Error.</p>
     </div>
 </body>
 </html>
