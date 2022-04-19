@@ -7,16 +7,19 @@
         header("Location: index.php"); 
         exit;
     }
-
-    if($_POST['captcha'] == $_SESSION['code']){
-        echo "correct captcha";
-    }else{
-        echo "Invalid captcha";
-        exit;
-    }
+    
 
     if (isset($_POST['command']) && $_POST['command'] == 'submit' && $_POST && !empty($_POST['post_id']) && !empty($_POST['member_id']) && !empty($_POST['comment'])) {
 
+        
+        // Check whether the CAPTCHA is matching
+        if($_POST['captcha'] == $_SESSION['code']){
+            echo "correct captcha";
+        }else{
+            echo "Invalid captcha";
+            exit;
+        }
+        
         // Santitize user input to escape HTML entitles and filter out dangerous characters.
         $postId = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
         $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);        

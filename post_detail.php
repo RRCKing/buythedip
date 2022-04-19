@@ -50,7 +50,7 @@
     
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Post Details</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />

@@ -127,7 +127,7 @@
                             <a href="post_detail.php?post_id=<?= $row['Post_ID'] ?>" target="_blank"><?= $row['Title'] ?></a>                        
                         </h3>
                         <p><?=$row['Product_Desc']?> in $<?=$row['Price']?> at <?=$row['Store_Name']?></p>
-                        <img src=<?=$row['Img_Link50']?> alt="product_photo" />
+                        <img src="<?=$row['Img_Link50']?>" alt="product_photo" />
                         <?php if ($row['Member_ID'] == $userLoginId): ?>                    
                         <p>
                             <a href="post_edit.php?post_id=<?= $row['Post_ID'] ?>" target="_blank">Edit</a>                        

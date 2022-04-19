@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     <label for="email">Email:</label>
-                    <input type="email" name="email" pattern=".+@buythedip\.com" size="30" required>
+                    <input type="email" id="email" name="email" pattern=".+@buythedip\.com" size="30" required>
                 </li>
                 <li>
                     <label for="street">Street</label>
