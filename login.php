@@ -5,7 +5,10 @@
 
     $msg = ""; 
     if(isset($_POST['submitBtnLogin'])) {
-        $username = trim($_POST['username']);
+        
+        $usernameNotTrim = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $username = trim($usernameNotTrim);
+
         $password = trim($_POST['password']);
 
         if($username != "" && $password != "") {

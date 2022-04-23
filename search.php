@@ -83,14 +83,12 @@
     }else{
         // if no query selected, run the query below       
         
-        $sortColumn ="Timestamp";
-        $order = "DESC";
         $query = "SELECT * FROM posts po 
                     JOIN products pr ON pr.Product_ID = po.Product_ID 
                     JOIN stores s ON s.Store_ID = po.Store_ID 
                     JOIN members m ON m.Member_ID = po.Member_ID
                     JOIN categories c ON c.Category_ID = pr.Category_ID
-                    ORDER BY ".$sortColumn." ".$order;
+                    ORDER BY Timestamp DESC";
 
         $statement = $db->prepare($query);
     }

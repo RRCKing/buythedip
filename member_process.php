@@ -17,7 +17,10 @@
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
         // Build the parameterized SQL query and bind to the above sanitized values.
-        $queryEdit = "INSERT INTO members (Member_ID, Login_Name, Email, Password, Street, Area, Bonus, Role) VALUES (:member_id, :login_name, :email, :password, :street, :area, :bonus, :role)";
+        $queryEdit = "INSERT INTO members 
+            (Member_ID, Login_Name, Email, Password, Street, Area, Bonus, Role) 
+            VALUES (:member_id, :login_name, :email, :password, :street, :area, :bonus, :role)";
+
         $statementEdit = $db->prepare($queryEdit);
 
         $statementEdit->bindValue('login_name', $loginName);

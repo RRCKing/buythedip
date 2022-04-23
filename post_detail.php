@@ -25,8 +25,6 @@
     // Fetch the new row selected by primary key id.
     $rowProduct = $statementProduct->fetch();
 
-    //$img = '<img src="data:image/jpeg;base64,'.base64_encode($rowProduct['Images']).'"/>';
-
     $queryAll = "SELECT * FROM posts po JOIN products pr ON pr.Product_ID = po.Product_ID 
                     JOIN stores s ON s.Store_ID = po.Store_ID 
                     JOIN members m ON m.Member_ID = po.Member_ID
@@ -114,7 +112,7 @@
                             <input type="hidden" name="member_id" value="<?= $rowComment['Member_ID']?>">
                             <p><?= $rowComment['Comment'] ?></p>
                             <textarea name="comment" id="comment"><?= $rowComment['Comment'] ?></textarea>
-                            <input type="submit" name="command" value="Edit" />
+                            <input type="submit" name="command" value="Update" />
                             <input type="submit" name="command" value="Delete" />
                         </form>
                         <?php else: ?>

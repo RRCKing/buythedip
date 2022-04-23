@@ -35,16 +35,19 @@
     
     <div id="main_section">
     <h1>Product list: Found <?= $statement->rowCount() ?> Products</h1>
-
+    <div id="home_post_list">
     <ol>        
         <?php while($row = $statement->fetch()): ?>
             <li>
                 <?= $row['Product_Desc'] ?> and ID is <a href="product_detail.php?id=<?= $row['Product_ID'] ?>" target="_blank"><?= $row['Product_ID'] ?></a>
-                <a href="product_edit.php?product_id=<?= $row['Product_ID'] ?>" target="_blank">Edit <?= $row['Product_ID'] ?></a>
+                <p><a href="product_edit.php?product_id=<?= $row['Product_ID'] ?>" target="_blank">Edit <?= $row['Product_ID'] ?></a></p>
+                <?php if (!empty($row['Img_Link50'])):?>
+                 <img src="<?=$row['Img_Link50']?>" alt="product_photo" />
+                <?php endif ?>
             </li>
         <?php endwhile ?>
     </ol>
-
+    </div>        
     </div>
     
 </body>

@@ -125,7 +125,7 @@
                         </select>
                     </li>
                     <li>
-                        <input type="submit" name="command" value="Edit" />
+                        <input type="submit" name="command" value="Update" />
                         <input type="submit" name="command" value="Delete" 
                             onclick="return confirm('Are you sure you wish to delete this post?')" />
                     </li>
